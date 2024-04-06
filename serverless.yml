@@ -1,0 +1,45 @@
+org: infraestructurabdc
+app: comunti-algo
+service: bdc-comunti-api-algo-tealscript
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  timeout: 20
+  environment:
+    DISPENSER_MNEMONIC: ${file(./config.${opt:stage, 'dev'}.json):DISPENSER_MNEMONIC}
+    STAGE: ${file(./config.${opt:stage, 'dev'}.json):STAGE}
+    DEPLOYER_SENDER : ${file(./config.${opt:stage, 'dev'}.json):DEPLOYER_SENDER}
+    DEPLOYER_MNEMONIC : ${file(./config.${opt:stage, 'dev'}.json):DEPLOYER_MNEMONIC}
+
+functions:
+  deploy:
+    handler: index.deploy
+    events:
+      - httpApi:
+          path: /deploy
+          method: get
+          
+  write:
+    handler: index.write
+    events:
+      - httpApi:
+          path: /write
+          method: post
+
+  read:
+    handler: index.read
+    events:
+      - httpApi:
+          path: /read
+          method: post
+    
+    
+
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-offline
+  - serverless-ignore
+

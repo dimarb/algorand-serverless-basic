@@ -1,0 +1,45 @@
+{
+  "name": "Register",
+  "desc": "",
+  "methods": [
+    {
+      "name": "addData",
+      "args": [
+        {
+          "name": "box",
+          "type": "uint64"
+        },
+        {
+          "name": "key",
+          "type": "string"
+        },
+        {
+          "name": "data",
+          "type": "string"
+        }
+      ],
+      "returns": {
+        "type": "void"
+      }
+    },
+    {
+      "name": "getData",
+      "args": [
+        {
+          "name": "box",
+          "type": "uint64"
+        }
+      ],
+      "returns": {
+        "type": "(string,string)"
+      }
+    },
+    {
+      "name": "createApplication",
+      "args": [],
+      "returns": {
+        "type": "void"
+      }
+    }
+  ]
+}
